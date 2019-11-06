@@ -33,6 +33,17 @@ export const initialState = {
                         return todo;
                     }
         })};
+        case "CLEAR_COMPLETED":
+            return {
+                ...state,
+                todoArray: state.todoArray.filter( todo => {
+                    if (todo.completed === true) {
+                        return false;
+                    } else {
+                        return true;
+                    }
+                })
+            };
         default:
             return state;
     }

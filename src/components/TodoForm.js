@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 
-const TodoForm = ({addTodo}) => {
+const TodoForm = ({addTodo, clearCompleted}) => {
     const [item, setItem] = useState ("");
     const handleChange = event => setItem(event.target.value);
     const handleSubmit = event => {
@@ -8,6 +8,11 @@ const TodoForm = ({addTodo}) => {
         addTodo(item);
         setItem("");
     };
+
+    const handleClear = e => {
+        e.preventDefault();
+        clearCompleted();
+    }
     return (
         <form onSubmit={handleSubmit}>
             <input
@@ -18,6 +23,7 @@ const TodoForm = ({addTodo}) => {
                 onChange = {handleChange}
             />
             <button type="submit">Add Todo</button>
+            <button onClick = {handleClear}>Clear Completed</button>
         </form>
     )
 };
